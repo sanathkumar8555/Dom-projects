@@ -7,6 +7,7 @@ This repository contains mini JavaScript DOM Projects that i built while learnin
 - Dark Mode Toggle
 - Dynamic List Creator
 - Kanban Board
+- Todo
 
   ## Technologies Used
 
