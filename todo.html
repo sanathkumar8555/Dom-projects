@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #e0f2fe, #f8fafc);
+        }
+
+        .todo-app {
+            width: min(460px, 90vw);
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+        }
+
+        .todo-input-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        #todoInput {
+            flex: 1;
+            padding: 12px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        #CreateButton {
+            padding: 12px 18px;
+            border: none;
+            border-radius: 10px;
+            background: #2563eb;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        #CreateButton:hover {
+            background: #1d4ed8;
+        }
+
+        #todoContainer {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        #todoContainer li {
+            padding: 12px 14px;
+            border-radius: 10px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        #todoContainer li:hover {
+            background: #e0f2fe;
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <div class="todo-app">
+        <div class="todo-input-row">
+            <input id="todoInput" type="text" placeholder="Enter your task here" />
+            <button id="CreateButton">Create</button>
+        </div>
+        <div>
+            <ul id="todoContainer"></ul>
+        </div>
+    </div>
+    <script>
+        const createButtonRef = document.getElementById('CreateButton');
+        const todoInputRef = document.getElementById('todoInput');
+        const todoContainerRef = document.getElementById('todoContainer');
+
+       /* (async () => {
+            fetch('https://api.freeapi.app/api/v1/public/quotes?page=1&limit=10&query=human',{
+                method: 'GET',
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                for (const obj of data.data.data){
+                    const li = document.createElement('li');
+                    li.innerText = obj.content;
+                    todoContainerRef.appendChild(li);
+                }
+            });
+        })(); */
+
+        createButtonRef.addEventListener('click', function () {
+            const value = todoInputRef.value.trim();
+
+            if (!value) {
+                return;
+            }
+
+            const li = document.createElement('li');
+            li.innerText = value;
+            li.addEventListener('click', function () {
+                li.remove();
+            });
+
+            todoContainerRef.appendChild(li);
+            todoInputRef.value = '';
+        });
+    </script>
+</body>
+</html>
